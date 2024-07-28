@@ -1,13 +1,55 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.Main {
+  margin: 4.7rem auto 0;
 }
+
+
+/* Header */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 4.2rem;
+  display: flex;
+  margin: 0 auto;
+  padding: 0 2rem;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 1px 1px 10px #bbb;
+}
+header .app-logo-text {
+  display: flex;
+  align-items: center;
+}
+header img, footer img {
+  width: 2.5rem;
+}
+header .sidenav-trigger {
+  display: flex;
+}
+header .sidenav-overlay {
+  z-index: 999;
+}
+header .sidenav {
+  z-index: 1001;
+}
+.app-logo-text a {
+  color: #388E3C !important;
+  font-size: 2rem;
+  font-style: italic;
+  margin: auto .5rem;
+}
+header span {
+  position: absolute;
+  right: 20px;
+}
+
