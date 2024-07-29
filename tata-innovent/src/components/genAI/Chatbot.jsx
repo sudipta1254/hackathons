@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom"
 import spark from "../../assets/spark.svg"
 import M from "materialize-css"
 import { handleEnter } from '../../utils/handleEnter'
@@ -9,7 +10,13 @@ import "../../index.css"
 
 const genai = new GoogleGenerativeAI(process.env.REACT_APP_GENAI_KEY);
 
-const Chatbot = () => {
+const Chatbot = ({user, setUser}) => {
+   document.title = "myApp - Chatbot"
+   const navigate = useNavigate()
+   
+   useEffect(() => {
+      navigate(!user?.logged && "/")
+   }, [user])
    useEffect(() => {
       M.AutoInit();
    }, [])
@@ -44,7 +51,7 @@ const Chatbot = () => {
    return (
       <div className="Chatbot container">
          <h3 className="center">
-            <span>Gemini 1.5 Flash</span>
+            <span>myApp - Chatbot</span>
             <img src={spark} alt="spark" />
          </h3>
          <div className="message-text">
@@ -53,7 +60,7 @@ const Chatbot = () => {
          </div>
          <div className="data-container">
             { !data && <div className="dummyText">
-               <h1>This is a dummy text</h1>
+               <h4>This is a dummy text</h4>
             </div> }
             <MarkDown>{ data }</MarkDown>
          </div>

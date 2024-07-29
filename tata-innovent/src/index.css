@@ -1,6 +1,4 @@
 body {
-  width: 100vw;
-  height: 100vh;
   margin: 0;
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -67,11 +65,11 @@ header span {
   height: 26rem;
   margin: 6rem auto;
   border-radius: 2rem;
-  box-shadow: 0 0 2rem #9f9d9d;
-  background: #eae7e7;
+  box-shadow: 0 0 2rem #cacaca;
+  background: #f5f5f5;
 }
 
-.Login .error-text {
+.error-text {
   margin: 0;
 }
 
@@ -86,10 +84,27 @@ header span {
   justify-content: right;
 }
 
-.Login .signup-link-div,
-.Login .login-btn-div {
+.form-link,
+.form-btn {
   margin: 0 0 1rem;
   text-align: center;
+}
+
+
+/* Signup */
+
+.Signup {
+  width: 32rem;
+  max-width: 90%;
+  height: 28rem;
+  margin: 6rem auto;
+  border-radius: 2rem;
+  box-shadow: 0 0 2rem #cacaca;
+  background: #f5f5f5;
+}
+
+.Signup .form-inner {
+  padding: 0 1.5rem;
 }
 
 

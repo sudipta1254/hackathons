@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getStorage } from "../utils/getStorage"
 import { Link, useNavigate } from "react-router-dom"
+import bcrypt from "bcryptjs"
 
 const Signup = ({user, setUser}) => {
    document.title = "myApp - Signup"
@@ -22,10 +23,18 @@ const Signup = ({user, setUser}) => {
       } else if (password !== rePassword) {
          setError("Passwords do not match")
       } else {
-         localStorage.setItem("user", JSON.stringify({
-            email, password, logged: true
-         }))
-         setUser(getStorage("user"))
+         bcrypt.hash(password, 10, (err, password) => {
+            if (err) {
+               console.error('Error hashing password:', err);
+               setError(err)
+            } else {
+               // Store the hash in your database
+               localStorage.setItem("user", JSON.stringify({
+                  email, password, logged: true
+               }))
+               setUser(getStorage("user"))
+            }
+         })
       }
    }
    
@@ -36,27 +45,27 @@ const Signup = ({user, setUser}) => {
          <form onSubmit={handleSubmit}>
             <div className="row form-inner">
                <div className="input-field col s12">
-                  <input id="email" type="text" value={email}
+                  <input id="email" type="text" value={email} required
                      onChange={e => setEmail(e.target.value)}
                   />
                   <label htmlFor="email">Email:</label>
                </div>
                <div className="input-field col s12">
-                  <input id="password" type="text" value={password}
+                  <input id="password" type="password" value={password} required
                      onChange={e => setPassword(e.target.value)}
                   />
                   <label htmlFor="password">Password:</label>
                </div>
                <div className="input-field col s12">
-                  <input id="rePassword" type="text" value={rePassword}
+                  <input id="rePassword" type="password" value={rePassword} required
                      onChange={e => setRePassword(e.target.value)}
                   />
                   <label htmlFor="rePassword">Reenter password:</label>
                </div>
-               <div className="col s12 login-btn-div">
+               <div className="col s12 signup-btn-div form-btn">
                   <button className="btn login-btn blue lighten-1" type="submit">Signup</button>
                </div>
-               <div className="col s12 signup-link-div">
+               <div className="col s12 login-link-div form-link">
                   <span>Already have an account? </span>
                   <Link className="signup-link" to="/login">Login</Link>
                </div>

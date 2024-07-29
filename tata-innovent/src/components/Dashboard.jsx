@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
+import bcrypt from "bcryptjs"
 
 const Dashboard = ({user, setUser}) => {
    document.title = "myApp - Dashboard"

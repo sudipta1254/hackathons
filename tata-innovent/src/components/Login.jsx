@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getStorage } from "../utils/getStorage"
 import { Link, useNavigate } from "react-router-dom"
+import bcrypt from "bcryptjs"
 
 const Login = ({user, setUser}) => {
    document.title = "myApp - Login"
@@ -16,17 +17,28 @@ const Login = ({user, setUser}) => {
    const handleSubmit = (e) => {
       e.preventDefault()
       const user = getStorage("user")
+
       if (email !== user.email) {
          setError("Email doesn't match")
-      } else if (password !== user.password) {
-         setError("Password doesn't match")
       } else {
-         localStorage.setItem("user", JSON.stringify({
-            email: user.email,
-            password: user.password,
-            logged: !user.logged
-         }))
-         setUser(getStorage("user"))
+         bcrypt.compare(password, user?.password, (err, result) => {
+            if (err) {
+               console.error('Error comparing passwords:', err);
+               setError(err)
+            } else if (result) {
+               // Password matches
+               localStorage.setItem("user", JSON.stringify({
+                  email: user.email,
+                  password: user.password,
+                  logged: !user.logged
+               }))
+               setUser(getStorage("user"))
+               console.log('Login success');
+            } else {
+               // Password does not match
+               setError('Invalid password');
+            }
+         })
       }
    }
    
@@ -37,24 +49,24 @@ const Login = ({user, setUser}) => {
          <form onSubmit={handleSubmit}>
             <div className="row form-inner">
                <div className="input-field col s12">
-                  <input id="email" type="text" value={email}
+                  <input id="email" type="text" value={email} required
                      onChange={e => setEmail(e.target.value)}
                   />
                   <label htmlFor="email">Email:</label>
                </div>
                <div className="input-field col s12">
-                  <input id="password" type="text" value={password}
+                  <input id="password" type="password" value={password} required
                      onChange={e => setPassword(e.target.value)}
                   />
                   <label htmlFor="password">Password:</label>
                </div>
-               <div className="col s12 login-btn-div">
+               <div className="col s12 login-btn-div form-btn">
                   <button className="btn login-btn blue lighten-1" type="submit">Login</button>
                </div>
                <div className="forgot-pass">
                   <Link to="/login">Forgot password?</Link>
                </div>
-               <div className="col s12 signup-link-div">
+               <div className="col s12 signup-link-div form-link">
                   <span>Don't have an account? </span>
                   <Link className="signup-link" to="/signup">Signup</Link>
                </div>
