@@ -1,8 +1,8 @@
 {
    "rewrites": [
       {
-         "src": "/innovent(.*)",
-         "dest": "/tata-innovent/(.*)"
+         "source": "/innovent/:path*",
+         "destination": "/tata-innovent/:path*"
       }
    ]
 }
