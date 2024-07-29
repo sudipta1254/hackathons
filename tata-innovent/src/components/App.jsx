@@ -16,7 +16,7 @@ const App = () => {
   })
 
   return (
-    <Route basename="/innovent">
+    <Route>
       <Header user={user} setUser={setUser} />
       <Main user={user} setUser={setUser}
         remember={remember} setRemember={setRemember}

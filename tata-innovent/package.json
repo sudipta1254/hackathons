@@ -1,6 +1,5 @@
 {
   "name": "tata-innovent",
-  "homepage": "/innovent",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
