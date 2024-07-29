@@ -1,8 +1,0 @@
-{
-   "rewrites": [
-      {
-         "source": "/inov/:path*",
-         "destination": "https://myhacks.vercel.app/tata-innovent/:path*"
-      }
-   ]
-}
