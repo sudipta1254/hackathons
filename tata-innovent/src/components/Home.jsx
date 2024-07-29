@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from "react-router-dom"
-import { lcStorage } from '../utils/lcStorage'
+import { Link, useNavigate } from "react-router-dom"
 
-const Home = () => {
+const Home = ({user, setUser}) => {
+   document.title = "myApp - Tata Innovent"
    const navigate = useNavigate()
    
    useEffect(() => {
-      const user = lcStorage("get", "user")
-      console.log(user)
-
-      navigate(user ? "/" : "login")
-   }, [])
+      navigate(user?.logged && "dashboard")
+   }, [user, navigate])
 
    return (
-      <div className="Home">
+      <div className="Home center">
          <h1>Home page</h1>
+         <div className="links center">
+            <div>
+               <span><Link to="/login">Login</Link></span> |
+               <span><Link to="/signup">Signup</Link></span>
+            </div>
+         </div>
       </div>
    );
 }

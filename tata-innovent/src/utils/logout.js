@@ -1,3 +1,11 @@
-export const logout = () => {
-   localStorage.setItem("user", null)
+import { getStorage } from "./getStorage"
+
+export const logout = (user, setUser) => {
+   if (user?.logged) {
+      const { email, password, logged } = user
+      localStorage.setItem("user", JSON.stringify({
+         email, password, logged: !logged
+      }))
+      setUser(getStorage("user"))
+   }
 }

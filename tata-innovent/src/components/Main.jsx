@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Chatbot from './genAI/Chatbot';
 import NotFound from './NotFound';
@@ -8,16 +8,16 @@ import Signup from "./Signup"
 import Home from './Home';
 import "../index.css"
 
-const Main = () => {
+const Main = ({user, setUser}) => {
    return (
       <div className="Main">
          <div className='container'>
             <Routes>
-               <Route path="/" element={ <Home /> } />
-               <Route path="/login" element={ <Login /> } />
-               <Route path="/singup" element={ <Signup /> } />
-               <Route path="/chatbot" element={ <Chatbot /> } />
-               <Route path="/dashboard" element={ <Dashboard /> } />
+               <Route path="/" element={ <Home user={user} setUser={setUser} /> } />
+               <Route path="/login" element={ <Login user={user} setUser={setUser} /> } />
+               <Route path="/signup" element={ <Signup user={user} setUser={setUser} /> } />
+               <Route path="/chatbot" element={ <Chatbot user={user} setUser={setUser} /> } />
+               <Route path="/dashboard" element={ <Dashboard user={user} setUser={setUser} /> } />
                <Route path="*" element={ <NotFound /> } />
             </Routes>
          </div>
