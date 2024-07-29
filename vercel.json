@@ -1,0 +1,8 @@
+{
+   "rewrites": [
+      {
+         "source": "/innovent/:path*",
+         "destination": "/tata-innovent/:path*"
+      }
+   ]
+}

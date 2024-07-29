@@ -3,7 +3,7 @@ import { getStorage } from "../utils/getStorage"
 import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
 
-const Login = ({user, setUser}) => {
+const Login = ({user, setUser, remember, setRemember}) => {
    document.title = "myApp - Login"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
@@ -67,8 +67,16 @@ const Login = ({user, setUser}) => {
                   <Link to="/login">Forgot password?</Link>
                </div>
                <div className="col s12 signup-link-div form-link">
-                  <span>Don't have an account? </span>
-                  <Link className="signup-link" to="/signup">Signup</Link>
+                  <div>
+                     {/* <label>
+                        <input type="checkbox" />
+                        <span>Auto update</span>
+                     </label> */}
+                  </div>
+                  <div>
+                     <span>Don't have an account? </span>
+                     <Link className="signup-link" to="/signup">Signup</Link>
+                  </div>
                </div>
             </div>
          </form>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from "./Header"
 import Footer from "./Footer"
 import Main from './Main';
@@ -7,11 +7,20 @@ import { getStorage } from '../utils/getStorage';
 
 const App = () => {
   const [user, setUser] = useState(getStorage("user"))
+  const [remember, setRemember] = useState(false)
+
+  useEffect(() => {
+    return () => {
+
+    }
+  })
 
   return (
-    <Route>
+    <Route basename="/innovent">
       <Header user={user} setUser={setUser} />
-      <Main user={user} setUser={setUser} />
+      <Main user={user} setUser={setUser}
+        remember={remember} setRemember={setRemember}
+      />
       <Footer />
     </Route>
   );
