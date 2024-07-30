@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import M from "materialize-css"
 import { handleEnter } from '../../utils/handleEnter'
@@ -28,22 +28,18 @@ const Chatbot = ({user, setUser}) => {
       M.AutoInit();
    }, [])
    useEffect(() => {
-      alert()
-      $(".Chatbot-btn").text(loading ? "cached" : "send")
-      .toggleClass("chatbot-btn-rotate")
+      const convo = $(".Chatbot-btn")
+      convo.text(loading ? "cached" : "send")
+      if (convo.text() === "cached")
+         convo.addClass("chatbot-btn-rotate")
+      return () => convo.removeClass("chatbot-btn-rotate")
    }, [loading])
-   useEffect(() => {
-      setHistory([...history, {
-         role: "user",
-         parts: [{ text: input }],
-      }, {
-         role: "model",
-         parts: [{ text: data }],
-      }])
-   }, [data])
-   useEffect(() => {
-      console.log(history)
-   },[history])
+
+   const handleSetHistory = (role, txt) => {
+      setHistory(prevHistory => [
+         ...prevHistory, { role, parts: [{text: txt}] }
+      ]);
+   }
    
    const generateContent = async() => {
       if (!input) {
@@ -62,11 +58,13 @@ const Chatbot = ({user, setUser}) => {
       
          const txt = input
          setInput("")
+         handleSetHistory("user", txt)
          const result = await chat.sendMessage(txt);
          const response = result.response;
          const text = response.text();
          // console.log(text);
          setData(text)
+         handleSetHistory("model", text)
          setError(null)
          setLoading(false)
       } catch (err) {
@@ -83,13 +81,22 @@ const Chatbot = ({user, setUser}) => {
             { error }
          </div>
          <div className="data-container">
-            { (!data || input) && <div className="dummyText">
+            { (!data) && <div className="dummyText">
                <img src={spark} alt="spark" style={{width:"4rem"}} />
                <div className="dummy-options">
                   <h5>Start with a prompt</h5>
                </div>
             </div> }
-            <MarkDown>{ data }</MarkDown>
+            <div className="conversation">
+               {history.map(({role, parts}, index) => (
+                  <div
+                     key={index}
+                     className={`message ${role === 'user' ? 'user-message' : 'ai-message'}`}
+                  >
+                     <MarkDown>{parts[0].text}</MarkDown>
+                  </div>
+               ))}
+            </div>
          </div>
          <div className="input-container">
             <i className="material-icons">attach_file</i>
