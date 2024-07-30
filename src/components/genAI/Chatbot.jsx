@@ -28,6 +28,7 @@ const Chatbot = ({user, setUser}) => {
       M.AutoInit();
    }, [])
    useEffect(() => {
+      alert()
       $(".Chatbot-btn").text(loading ? "cached" : "send")
       .toggleClass("chatbot-btn-rotate")
    }, [loading])
@@ -40,6 +41,9 @@ const Chatbot = ({user, setUser}) => {
          parts: [{ text: data }],
       }])
    }, [data])
+   useEffect(() => {
+      console.log(history)
+   },[history])
    
    const generateContent = async() => {
       if (!input) {
@@ -79,7 +83,7 @@ const Chatbot = ({user, setUser}) => {
             { error }
          </div>
          <div className="data-container">
-            { !data && <div className="dummyText">
+            { (!data || input) && <div className="dummyText">
                <img src={spark} alt="spark" style={{width:"4rem"}} />
                <div className="dummy-options">
                   <h5>Start with a prompt</h5>
