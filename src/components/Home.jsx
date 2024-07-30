@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 
 const Home = ({user, setUser}) => {
-   document.title = "personaAI - Tata Innovent"
+   document.title = "autoGenie - Tata Innovent"
    const navigate = useNavigate()
    
    useEffect(() => {

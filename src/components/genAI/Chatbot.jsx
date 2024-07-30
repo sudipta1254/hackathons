@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import M from "materialize-css"
 import { handleEnter } from '../../utils/handleEnter'
@@ -12,11 +12,11 @@ import "../../index.css"
 const genai = new GoogleGenerativeAI(process.env.REACT_APP_GENAI_KEY);
 
 const Chatbot = ({user, setUser}) => {
-   document.title = "personaAI - AI"
+   document.title = "autoGenie - AI"
    const navigate = useNavigate()
    
    const [input, setInput] = useState("")
-   const [data, setData] = useState("")
+   const [input2, setInput2] = useState("")
    const [error, setError] = useState("")
    const [loading, setLoading] = useState(false)
    const [history, setHistory] = useState([])
@@ -35,9 +35,9 @@ const Chatbot = ({user, setUser}) => {
       return () => convo.removeClass("chatbot-btn-rotate")
    }, [loading])
 
-   const handleSetHistory = (role, txt) => {
+   const handleSetHistory = (role, text) => {
       setHistory(prevHistory => [
-         ...prevHistory, { role, parts: [{text: txt}] }
+         ...prevHistory, { role, parts: [{text}] }
       ]);
    }
    
@@ -57,19 +57,18 @@ const Chatbot = ({user, setUser}) => {
          });
       
          const txt = input
+         setInput2(input)
          setInput("")
          handleSetHistory("user", txt)
          const result = await chat.sendMessage(txt);
          const response = result.response;
          const text = response.text();
          // console.log(text);
-         setData(text)
          handleSetHistory("model", text)
          setError(null)
          setLoading(false)
       } catch (err) {
          console.log(err)
-         setData(null)
          setError(err)
          setLoading(false)
       }
@@ -81,11 +80,12 @@ const Chatbot = ({user, setUser}) => {
             { error }
          </div>
          <div className="data-container">
-            { (!data) && <div className="dummyText">
-               <img src={spark} alt="spark" style={{width:"4rem"}} />
-               <div className="dummy-options">
-                  <h5>Start with a prompt</h5>
+            { !input2 && <div className="dummyText">
+               <div className="dummy-intro">
+                  <h3>Hello, {user.email}</h3>
+                  <img src={spark} alt="spark" style={{width:"2.5rem"}} />
                </div>
+               <h4>How can I help you?</h4>
             </div> }
             <div className="conversation">
                {history.map(({role, parts}, index) => (

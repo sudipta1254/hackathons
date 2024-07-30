@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
 
 const Signup = ({user, setUser}) => {
-   document.title = "personaAI - Signup"
+   document.title = "autoGenie - Signup"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [rePassword, setRePassword] = useState("")
@@ -63,7 +63,7 @@ const Signup = ({user, setUser}) => {
                   <label htmlFor="rePassword">Reenter password:</label>
                </div>
                <div className="col s12 signup-btn-div form-btn">
-                  <button className="btn login-btn blue lighten-1" type="submit">Signup</button>
+                  <button className="btn login-btn" type="submit">Signup</button>
                </div>
                <div className="col s12 login-link-div form-link">
                   <span>Already have an account? </span>

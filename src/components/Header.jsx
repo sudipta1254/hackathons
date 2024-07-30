@@ -22,7 +22,7 @@ const Header = ({user, setUser}) => {
       <header className="header blue lighten-4 green-text text-darken-2" style={flex}>
          <div className="app-logo-text">
             <img src={spark} alt="app logo" />
-            <p><Link to="/">personaAI</Link></p>
+            <p><Link to="/">autoGenie</Link></p>
          </div>
          <div>
             <a href='#!' data-target="slide-nav" className="sidenav-trigger">

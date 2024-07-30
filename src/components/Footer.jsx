@@ -10,9 +10,9 @@ const Footer = () => {
                <div className="col l6 s12 footer-heading">
                   <div className="footer-heading-top">
                      <img src={spark} alt="app icon" />
-                     <h5 className="footer-app-name"><Link to="/">personaAI</Link></h5>
+                     <h5 className="footer-app-name"><Link to="/">autoGenie</Link></h5>
                   </div>
-                  <p className="details">An application that personalizes proposals for customers</p>
+                  <p className="details">An application that uses AI to personalize proposals for customers</p>
                </div>
                <div className="col l4 offset-l2 s12">
                   <h5 className="">Links</h5>

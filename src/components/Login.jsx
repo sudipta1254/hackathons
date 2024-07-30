@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
 
 const Login = ({user, setUser}) => {
-   document.title = "personaAI - Login"
+   document.title = "autoGenie - Login"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [error, setError] = useState("")
@@ -65,7 +65,7 @@ const Login = ({user, setUser}) => {
                   <label htmlFor="password">Password:</label>
                </div>
                <div className="col s12 login-btn-div form-btn">
-                  <button className="btn login-btn blue lighten-1" type="submit">Login</button>
+                  <button className="btn login-btn" type="submit">Login</button>
                </div>
                <div className="forgot-pass">
                   <Link to="/login">Forgot password?</Link>

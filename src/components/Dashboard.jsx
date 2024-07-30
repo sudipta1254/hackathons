@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 
 const Dashboard = ({user, setUser}) => {
-   document.title = "personaAI - Dashboard"
+   document.title = "autoGenie - Dashboard"
    const navigate = useNavigate()
    
    useEffect(() => {
@@ -39,9 +39,6 @@ const Dashboard = ({user, setUser}) => {
                </div>
             </div>
             <hr />
-            <div className="note">
-               <b>Note: If you are on a trial plan then after the trial plan ends your account will be automatically moved to Free plan if you do not wish to upgrade to a paid plan.</b>
-            </div>
             <div className="ai-link">
                <div className="get-started">
                   <i className="material-icons">star</i>
