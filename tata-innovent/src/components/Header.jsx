@@ -22,7 +22,7 @@ const Header = ({user, setUser}) => {
       <header className="header blue lighten-4 green-text text-darken-2" style={flex}>
          <div className="app-logo-text">
             <img src={spark} alt="app logo" />
-            <p><Link to="/">myApp</Link></p>
+            <p><Link to="/">personaAI</Link></p>
          </div>
          <div>
             <a href='#!' data-target="slide-nav" className="sidenav-trigger">
@@ -32,10 +32,10 @@ const Header = ({user, setUser}) => {
          <ul className="sidenav" id="slide-nav">
             <li><a className="subheader" href="#!">More options</a></li>
             { !logged ? <li><Link className="header-navlink navlink-home" to="/">Home</Link></li> : null }
-            { !logged ? <li><Link className="header-navlink navlink-login" to="login">Login</Link></li> : null }
-            { !logged ? <li><Link className="header-navlink navlink-home" to="signup">Signup</Link></li> : null }
-            { logged ? <li><Link className="header-navlink navlink-home" to="dashboard">Dashboard</Link></li> : null }
-            { logged ? <li><Link className="header-navlink navlink-home" to="chatbot">Chatbot</Link></li> : null }
+            { !logged ? <li><Link className="header-navlink navlink-login" to="/login">Login</Link></li> : null }
+            { !logged ? <li><Link className="header-navlink navlink-signup" to="/signup">Signup</Link></li> : null }
+            { logged ? <li><Link className="header-navlink navlink-dashhboard" to="/dashboard">Dashboard</Link></li> : null }
+            { logged ? <li><Link className="header-navlink navlink-ai" to="/ai">personaAI</Link></li> : null }
             { logged ? <li><a className="header-navlink navlink-logout" href="#!"
                onClick={e => logout(user, setUser)}
             >Logout</a></li> : null }

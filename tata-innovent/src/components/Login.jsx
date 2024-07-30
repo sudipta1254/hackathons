@@ -3,8 +3,8 @@ import { getStorage } from "../utils/getStorage"
 import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
 
-const Login = ({user, setUser, remember, setRemember}) => {
-   document.title = "myApp - Login"
+const Login = ({user, setUser}) => {
+   document.title = "personaAI - Login"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [error, setError] = useState("")
@@ -18,7 +18,11 @@ const Login = ({user, setUser, remember, setRemember}) => {
       e.preventDefault()
       const user = getStorage("user")
 
-      if (email !== user.email) {
+      if (!user) {
+         setError("User not found")
+         return
+      }
+      if (email !== user?.email) {
          setError("Email doesn't match")
       } else {
          bcrypt.compare(password, user?.password, (err, result) => {
@@ -49,7 +53,7 @@ const Login = ({user, setUser, remember, setRemember}) => {
          <form onSubmit={handleSubmit}>
             <div className="row form-inner">
                <div className="input-field col s12">
-                  <input id="email" type="text" value={email} required
+                  <input id="email" type="email" value={email} required
                      onChange={e => setEmail(e.target.value)}
                   />
                   <label htmlFor="email">Email:</label>
@@ -67,12 +71,6 @@ const Login = ({user, setUser, remember, setRemember}) => {
                   <Link to="/login">Forgot password?</Link>
                </div>
                <div className="col s12 signup-link-div form-link">
-                  <div>
-                     {/* <label>
-                        <input type="checkbox" />
-                        <span>Auto update</span>
-                     </label> */}
-                  </div>
                   <div>
                      <span>Don't have an account? </span>
                      <Link className="signup-link" to="/signup">Signup</Link>

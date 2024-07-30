@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 
 const Home = ({user, setUser}) => {
-   document.title = "myApp - Tata Innovent"
+   document.title = "personaAI - Tata Innovent"
    const navigate = useNavigate()
    
    useEffect(() => {
       navigate(user?.logged && "dashboard")
-   }, [user, navigate])
+   }, [])
 
    return (
       <div className="Home center">

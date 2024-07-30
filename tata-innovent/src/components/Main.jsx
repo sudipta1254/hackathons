@@ -8,17 +8,15 @@ import Signup from "./Signup"
 import Home from './Home';
 import "../index.css"
 
-const Main = ({user, setUser, remember, setRemember}) => {
+const Main = ({user, setUser}) => {
    return (
       <div className="Main">
          <div className='container'>
             <Routes>
                <Route path="/" element={ <Home user={user} setUser={setUser} /> } />
-               <Route path="/login" element={ <Login user={user} setUser={setUser}
-                  remember={remember} setRemember={setRemember}
-               /> } />
+               <Route path="/login" element={ <Login user={user} setUser={setUser} /> } />
                <Route path="/signup" element={ <Signup user={user} setUser={setUser} /> } />
-               <Route path="/chatbot" element={ <Chatbot user={user} setUser={setUser} /> } />
+               <Route path="/ai" element={ <Chatbot user={user} setUser={setUser} /> } />
                <Route path="/dashboard" element={ <Dashboard user={user} setUser={setUser} /> } />
                <Route path="*" element={ <NotFound /> } />
             </Routes>

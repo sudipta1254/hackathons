@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
 
 const Signup = ({user, setUser}) => {
-   document.title = "myApp - Signup"
+   document.title = "personaAI - Signup"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [rePassword, setRePassword] = useState("")
@@ -18,7 +18,7 @@ const Signup = ({user, setUser}) => {
    const handleSubmit = (e) => {
       e.preventDefault()
       const user = getStorage("user")
-      if (email === user.email) {
+      if (email === user?.email) {
          setError("Email already exists")
       } else if (password !== rePassword) {
          setError("Passwords do not match")
@@ -45,7 +45,7 @@ const Signup = ({user, setUser}) => {
          <form onSubmit={handleSubmit}>
             <div className="row form-inner">
                <div className="input-field col s12">
-                  <input id="email" type="text" value={email} required
+                  <input id="email" type="email" value={email} required
                      onChange={e => setEmail(e.target.value)}
                   />
                   <label htmlFor="email">Email:</label>
