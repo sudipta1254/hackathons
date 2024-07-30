@@ -42,7 +42,7 @@ header .sidenav {
 }
 .app-logo-text a {
   color: #388E3C !important;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-style: italic;
   margin: auto .5rem;
 }
@@ -220,6 +220,29 @@ header span {
   overflow: auto;
   border-radius: 2rem;
   background: #efecec;
+}
+.Chatbot .data-container::-webkit-scrollbar {
+  width: 0;
+}
+.Chatbot .dummyText {
+  margin: 2rem;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.Chatbot .dummy-options {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+.dummy-options .option {
+  width: 10rem;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid;
 }
 .Chatbot .input-container {
   width: 90%;
