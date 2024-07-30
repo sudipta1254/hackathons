@@ -12,7 +12,7 @@ import "../../index.css"
 const genai = new GoogleGenerativeAI(process.env.REACT_APP_GENAI_KEY);
 
 const Chatbot = ({user, setUser}) => {
-   document.title = "autoGenie - AI"
+   document.title = "AutoGenie - AI"
    const navigate = useNavigate()
    
    const [input, setInput] = useState("")

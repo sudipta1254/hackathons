@@ -10,7 +10,7 @@ const Footer = () => {
                <div className="col l6 s12 footer-heading">
                   <div className="footer-heading-top">
                      <img src={spark} alt="app icon" />
-                     <h5 className="footer-app-name"><Link to="/">autoGenie</Link></h5>
+                     <h5 className="footer-app-name"><Link to="/">AutoGenie</Link></h5>
                   </div>
                   <p className="details">An application that uses AI to personalize proposals for customers</p>
                </div>
@@ -24,7 +24,7 @@ const Footer = () => {
          </div>
          <div className="footer-copyright">
             <div className="container green-text text-darken-2 center">
-               © { new Date().getFullYear() } Copyright | Team 
+               © { new Date().getFullYear() } Copyright | Team Revamp
             </div>
          </div>
       </footer>

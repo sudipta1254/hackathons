@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 
 const Dashboard = ({user, setUser}) => {
-   document.title = "autoGenie - Dashboard"
+   document.title = "AutoGenie - Dashboard"
    const navigate = useNavigate()
    
    useEffect(() => {

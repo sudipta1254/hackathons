@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const NotFound = () => {
-   document.title = "404 - autoGenie"
+   document.title = "404 - AutoGenie"
 
    return (
       <div className="NotFound center">

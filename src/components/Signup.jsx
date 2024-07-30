@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
 
 const Signup = ({user, setUser}) => {
-   document.title = "autoGenie - Signup"
+   document.title = "AutoGenie - Signup"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [rePassword, setRePassword] = useState("")
@@ -40,7 +40,7 @@ const Signup = ({user, setUser}) => {
    
    return (
       <div className="Signup">
-         <h3 className="center">Signup</h3>
+         <h3 className="top-text center">Signup</h3>
          { error && <p className="error-text" style={{color:"red",textAlign:"center"}}>{error}</p> }
          <form onSubmit={handleSubmit}>
             <div className="row form-inner">
