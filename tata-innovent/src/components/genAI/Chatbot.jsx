@@ -50,20 +50,21 @@ const Chatbot = ({user, setUser}) => {
       try {
          const model = genai.getGenerativeModel({ model: "gemini-1.5-flash"});
          const chat = model.startChat({
-            history: history,
+            history,
             generationConfig: {
             //   maxOutputTokens: 100,
             },
          });
       
-         const result = await chat.sendMessage(input);
+         const txt = input
+         setInput("")
+         const result = await chat.sendMessage(txt);
          const response = result.response;
          const text = response.text();
-         console.log(text);
+         // console.log(text);
          setData(text)
          setError(null)
          setLoading(false)
-         setInput("")
       } catch (err) {
          console.log(err)
          setData(null)
@@ -81,14 +82,7 @@ const Chatbot = ({user, setUser}) => {
             { !data && <div className="dummyText">
                <img src={spark} alt="spark" style={{width:"4rem"}} />
                <div className="dummy-options">
-                  <div className="option-1 option">
-                     <i className="material-icons">add</i>
-                     <p>Option 1</p>
-                  </div>
-                  <div className="option-2 option">
-                     <i className="material-icons">add</i>
-                     <p>Option 2</p>
-                  </div>
+                  <h5>Start with a prompt</h5>
                </div>
             </div> }
             <MarkDown>{ data }</MarkDown>

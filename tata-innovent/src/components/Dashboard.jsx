@@ -23,24 +23,19 @@ const Dashboard = ({user, setUser}) => {
             </div>
             <div className="plans">
                <div className="plan-1 plan-each">
-                  <i className="material-icons">business_center</i>
-                  <h5>Free</h5>
-                  <p>Plan</p>
-               </div>
-               <div className="plan-2 plan-each">
-                  <i className="material-icons">check_box</i>
-                  <h5>1,000</h5>
-                  <p>Chats per month</p>
+                  <i className="material-icons">account_circle</i>
+                  <h5>Active</h5>
+                  <p>Account</p>
                </div>
                <div className="plan-3 plan-each">
-                  <i className="material-icons">chat</i>
+                  <i className="material-icons">checklist_rtl</i>
                   <h5>0</h5>
-                  <p>Chats done</p>
+                  <p>Proposals proposed</p>
                </div>
                <div className="plan-4 plan-each">
-                  <i className="material-icons">receipt_long</i>
-                  <h5>$0</h5>
-                  <p>Invoice amount</p>
+                  <i className="material-icons">done_all</i>
+                  <h5>0</h5>
+                  <p>Proposals approved</p>
                </div>
             </div>
             <hr />
