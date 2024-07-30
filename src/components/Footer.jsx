@@ -24,7 +24,7 @@ const Footer = () => {
          </div>
          <div className="footer-copyright">
             <div className="container green-text text-darken-2 center">
-               © { new Date().getFullYear() } Copyright | Team Revamp
+               © { new Date().getFullYear() } Copyright | The AI Garage
             </div>
          </div>
       </footer>
