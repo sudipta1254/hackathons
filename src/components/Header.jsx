@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import spark from "../assets/spark.svg"
+import spark from "../assets/autogenie-512.png"
 import { Link } from "react-router-dom"
 import { logout } from '../utils/logout'
 import $ from "jquery"
@@ -19,14 +19,14 @@ const Header = ({user, setUser}) => {
    }, [])
 
    return (
-      <header className="header blue lighten-4 green-text text-darken-2" style={flex}>
+      <header className="header grey lighten-1" style={flex}>
          <div className="app-logo-text">
             <img src={spark} alt="app logo" />
             <p><Link to="/">AutoGenie</Link></p>
          </div>
          <div>
             <a href='#!' data-target="slide-nav" className="sidenav-trigger">
-               <i className="material-icons green-text text-lighten-1 small">menu</i>
+               <i className="material-icons brown-text text-darken-1 small">menu</i>
             </a>
          </div>
          <ul className="sidenav" id="slide-nav">

@@ -1,6 +1,11 @@
+:root {
+  --color1: #494d55;
+  --header-footer-text: #6d4c41;
+}
+
 body {
   margin: 0;
-  color: #494d55;
+  color: var(--color1);
   background: #f9f9fb;
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -21,7 +26,6 @@ header {
   margin: 0 auto;
   padding: 0 2rem;
   align-items: center;
-  background: #1d8ef6;
   justify-content: space-between;
   box-shadow: 1px 1px 10px #bbb;
 }
@@ -42,7 +46,7 @@ header .sidenav {
   z-index: 1001;
 }
 .app-logo-text a {
-  color: #388E3C !important;
+  color: var(--header-footer-text) !important;
   font-size: 1.8rem;
   font-style: italic;
   margin: auto .5rem;
@@ -140,8 +144,8 @@ header span {
 .swiper p {
   font-size: 1.5rem;
   margin: 0;
-  text-shadow: 0 0 7px rgba(255, 255, 255, .3),
-              0 0 3px rgba(255, 255, 255, .3);
+  text-shadow: 0 0 7px rgba(255, 255, 255, 0.302),
+              0 0 3px rgba(255, 255, 255, 0.3);
 }
 .swiper-inner {
   height: 2.9rem;
@@ -180,7 +184,7 @@ header span {
 .Dashboard hr {
   width: 85%;
   margin: 2.2rem auto;
-  background: #494d55;
+  background: var(--color1);
 }
 
 .Dashboard h4,
@@ -250,7 +254,7 @@ header span {
 }
 
 .ai-link a {
-  color: #494d55;
+  color: var(--color1);
   margin: 0 2rem;
 }
 
@@ -258,6 +262,7 @@ header span {
 /* Chatbot */
 
 .Chatbot.container {
+  color: #000;
   width: 100%;
   height: 100%;
   max-width: 800px;
@@ -296,6 +301,9 @@ header span {
   text-align: center;
   border-radius: 5rem;
   background: #ece9e9;
+  box-shadow: 0 2px 2px 0 #00000024,
+              0 3px 1px -2px #0000001f,
+              0 1px 5px 0 #00000033;
 }
 
 .conversation {
@@ -335,14 +343,15 @@ header span {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: #999;
+  color: #828282;
   cursor: pointer;
   background: #ece9e9;
 }
 .Chatbot-btn:active {
   background: #ccc;
 }
-.chatbot-btn-rotate {
+.Chatbot-btn.chatbot-btn-rotate {
+  color: #000;
   animation: rotate 2s linear infinite;
 }
 @keyframes rotate {
@@ -378,7 +387,7 @@ footer {
   margin: 1rem;
 }
 .footer-app-name a {
-  color: #388E3C !important;
+  color: var(--header-footer-text) !important;
   font-size: 2rem;
   font-style: italic;
 }

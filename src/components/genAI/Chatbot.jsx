@@ -5,7 +5,6 @@ import { handleEnter } from '../../utils/handleEnter'
 import "materialize-css/dist/css/materialize.min.css"
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import MarkDown from "react-markdown"
-import spark from "../../assets/spark.svg"
 import $ from "jquery"
 import "../../index.css"
 
@@ -19,7 +18,11 @@ const Chatbot = ({user, setUser}) => {
    const [input2, setInput2] = useState("")
    const [error, setError] = useState("")
    const [loading, setLoading] = useState(false)
-   const [history, setHistory] = useState([])
+   const [history, setHistory] = useState([
+      { role: "user", parts:
+         [{text: "From now your name is 'AutoGenie'. Whenever user calls you for first time response with your name."}]
+      }
+   ])
 
    useEffect(() => {
       navigate(!user?.logged && "/")
@@ -79,22 +82,21 @@ const Chatbot = ({user, setUser}) => {
          <div className="message-text">
             { error }
          </div>
-         <div className="data-container">
+         <div className="data-container card-panel">
             { !input2 && <div className="dummyText">
                <div className="dummy-intro">
                   <h3>Hello, {user.email}</h3>
-                  <img src={spark} alt="spark" style={{width:"2.5rem"}} />
                </div>
                <h4>How can I help you?</h4>
             </div> }
             <div className="conversation">
                {history.map(({role, parts}, index) => (
-                  <div
+                  index ? <div
                      key={index}
                      className={`message ${role === 'user' ? 'user-message' : 'ai-message'}`}
                   >
                      <MarkDown>{parts[0].text}</MarkDown>
-                  </div>
+                  </div> : null
                ))}
             </div>
          </div>
