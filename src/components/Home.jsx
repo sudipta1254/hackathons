@@ -18,16 +18,16 @@ const Home = ({user, setUser}) => {
          <div className="homepage-intro">
             <div className="autogenie">
                <h1>AutoGenie</h1>
-               <div class="swiper">
-                  <div class="swiper-inner">
-                     <div class="first">
+               <div className="swiper">
+                  <div className="swiper-inner">
+                     <div className="first">
                         <span>Think</span>
                      </div>
-                     <div class="second">
-                        <span>Create</span>
+                     <div className="second">
+                        <span>Personalize</span>
                      </div>
-                     <div class="third">
-                        <span>Share</span>
+                     <div className="third">
+                        <span>Create</span>
                      </div>
                   </div>
                </div>
