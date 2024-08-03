@@ -19,4 +19,5 @@ mongoose.connect(process.env.DATABASE_URL)
 import usersRoute from "./routes/users.js"
 app.use('/innovent', usersRoute)
 
-app.listen(5000, () => console.log('Server Started at localhost:5000/innovent'))
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => console.log('Server Started at localhost:5000/innovent'))
