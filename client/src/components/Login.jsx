@@ -17,7 +17,6 @@ const Login = ({dt1, user, setUser}) => {
 
    const handleSubmit = async e => {
       e.preventDefault()
-      const user = getStorage("user")
       
       try {
          const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL)
@@ -28,9 +27,9 @@ const Login = ({dt1, user, setUser}) => {
             setError("Invalid passowrd")
          } else {
             localStorage.setItem("user", JSON.stringify({
-               email: user.email,
-               password: user.password,
-               logged: !user.logged
+               email: local.email,
+               password: local.password,
+               logged: true
             }))
             setUser(getStorage("user"))
             console.log('Login success')

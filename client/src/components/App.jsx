@@ -10,7 +10,7 @@ const App = () => {
   const [dt1, setDt1] = useState([])
 
   return (
-    <Route basename="/innovent">
+    <Route>
       <Header user={user} setUser={setUser} />
       <Main dt1={dt1} setDt1={setDt1} user={user} setUser={setUser} />
       <Footer />

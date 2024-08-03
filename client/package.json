@@ -2,7 +2,6 @@
   "name": "tata-innovent",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/innovent",
   "dependencies": {
     "@google/generative-ai": "^0.16.0",
     "@testing-library/jest-dom": "^5.17.0",

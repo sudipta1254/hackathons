@@ -18,7 +18,6 @@ const Signup = ({user, setUser}) => {
 
    const handleSubmit = async e => {
       e.preventDefault()
-      const user = getStorage("user")
 
       if (password !== rePassword) {
          setError("Passwords do not match")
@@ -42,6 +41,7 @@ const Signup = ({user, setUser}) => {
          }))
          setUser(getStorage("user"))
       } catch (err) {
+         setError(err)
          console.log(err)
       }
    }
