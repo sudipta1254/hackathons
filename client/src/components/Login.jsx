@@ -26,12 +26,8 @@ const Login = ({dt1, user, setUser}) => {
          } else if (!bcrypt.compareSync(password, local?.password)) {
             setError("Invalid passowrd")
          } else {
-            localStorage.setItem("user", JSON.stringify({
-               email: local.email,
-               password: local.password,
-               logged: true
-            }))
-            setUser(getStorage("user"))
+            localStorage.setItem("innovent-user", JSON.stringify({ logged: true }))
+            setUser(getStorage("innovent-user"))
             console.log('Login success')
          }
       } catch (err) {

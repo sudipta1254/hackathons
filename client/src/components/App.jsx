@@ -6,7 +6,7 @@ import { BrowserRouter as Route } from 'react-router-dom';
 import { getStorage } from '../utils/getStorage';
 
 const App = () => {
-  const [user, setUser] = useState(getStorage("user"))
+  const [user, setUser] = useState(getStorage("innovent-user"))
   const [dt1, setDt1] = useState([])
 
   return (

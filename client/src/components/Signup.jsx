@@ -36,10 +36,8 @@ const Signup = ({user, setUser}) => {
          await axios.post(process.env.REACT_APP_BACKEND_URL, {
             email, password: hashedPassword
          })
-         localStorage.setItem("user", JSON.stringify({
-            email, password: hashedPassword, logged: true
-         }))
-         setUser(getStorage("user"))
+         localStorage.setItem("innovent-user", JSON.stringify({ logged: true }))
+         setUser(getStorage("innovent-user"))
       } catch (err) {
          setError(err)
          console.log(err)
