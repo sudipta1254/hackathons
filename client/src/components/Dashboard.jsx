@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
+import M from "materialize-css"
 
 const Dashboard = ({user, setUser}) => {
    document.title = "AutoGenie - Dashboard"
@@ -8,6 +9,9 @@ const Dashboard = ({user, setUser}) => {
    useEffect(() => {
       navigate(!user?.logged && "/")
    }, [user])
+   useEffect(() => {
+      M.AutoInit();
+   }, [])
 
    return (
       <div className="Dashboard">
