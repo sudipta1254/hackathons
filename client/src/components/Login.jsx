@@ -20,8 +20,7 @@ const Login = ({dt1, user, setUser}) => {
       const user = getStorage("user")
       
       try {
-         const { data } = await axios.get("http://localhost:5000/innovent")
-         console.log(data)
+         const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL)
          const local = data.find(u => u.email === email)
          if (!local) {
             setError("Invalid email")

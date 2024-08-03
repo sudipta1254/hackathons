@@ -25,7 +25,7 @@ const Signup = ({user, setUser}) => {
          return
       }
       try {
-         const { data: data1 } = await axios.get("http://localhost:5000/innovent")
+         const { data: data1 } = await axios.get(process.env.REACT_APP_BACKEND_URL)
          data1?.forEach(u => {
             if (u.email === email) {
                setError("Email already exists")
@@ -34,10 +34,9 @@ const Signup = ({user, setUser}) => {
          })
          const hashedPassword = bcrypt.hashSync(password, 10)
 
-         const { data: data2 } = await axios.post("http://localhost:5000/innovent", {
+         await axios.post(process.env.REACT_APP_BACKEND_URL, {
             email, password: hashedPassword
          })
-         console.log(data2)
          localStorage.setItem("user", JSON.stringify({
             email, password: hashedPassword, logged: true
          }))
