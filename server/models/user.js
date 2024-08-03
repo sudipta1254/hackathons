@@ -10,10 +10,6 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   logged: {
-      type: Boolean,
-      required: true
-   },
    createdAt: {
       type: Date,
       required: true,

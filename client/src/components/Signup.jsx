@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getStorage } from "../utils/getStorage"
 import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
+import axios from "axios"
 
 const Signup = ({user, setUser}) => {
    document.title = "AutoGenie - Signup"
@@ -13,28 +14,36 @@ const Signup = ({user, setUser}) => {
    
    useEffect(() => {
       navigate(user?.logged && "/dashboard")
-   }, [user])
+   }, [user, navigate])
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async e => {
       e.preventDefault()
       const user = getStorage("user")
-      if (email === user?.email) {
-         setError("Email already exists")
-      } else if (password !== rePassword) {
+
+      if (password !== rePassword) {
          setError("Passwords do not match")
-      } else {
-         bcrypt.hash(password, 10, (err, password) => {
-            if (err) {
-               console.error('Error hashing password:', err);
-               setError(err)
-            } else {
-               // Store the hash in your database
-               localStorage.setItem("user", JSON.stringify({
-                  email, password, logged: true
-               }))
-               setUser(getStorage("user"))
+         return
+      }
+      try {
+         const { data: data1 } = await axios.get("http://localhost:5000/innovent")
+         data1?.forEach(u => {
+            if (u.email === email) {
+               setError("Email already exists")
+               return
             }
          })
+         const hashedPassword = bcrypt.hashSync(password, 10)
+
+         const { data: data2 } = await axios.post("http://localhost:5000/innovent", {
+            email, password: hashedPassword
+         })
+         console.log(data2)
+         localStorage.setItem("user", JSON.stringify({
+            email, password: hashedPassword, logged: true
+         }))
+         setUser(getStorage("user"))
+      } catch (err) {
+         console.log(err)
       }
    }
    

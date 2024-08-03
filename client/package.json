@@ -2,6 +2,7 @@
   "name": "tata-innovent",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/innovent",
   "dependencies": {
     "@google/generative-ai": "^0.16.0",
     "@testing-library/jest-dom": "^5.17.0",
@@ -9,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.3",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "jquery": "^3.7.1",
     "materialize-css": "^1.0.0",
     "react": "^18.3.1",

@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 })
 
 // Get one
-router.get("/:id", async (req, res) => {
+router.get("/:id", getUser, async (req, res) => {
    res.json(res.user)
 })
 
@@ -21,7 +21,8 @@ router.get("/:id", async (req, res) => {
 router.post('/', async (req, res) => {
    const user = new User({
      email: req.body.email,
-     password: req.body.password
+     password: req.body.password,
+     logged: true
    })
    try {
      const newUser = await user.save()

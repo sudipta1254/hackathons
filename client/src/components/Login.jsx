@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
 import axios from "axios"
 
-const Login = ({user, setUser}) => {
+const Login = ({dt1, user, setUser}) => {
    document.title = "AutoGenie - Login"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
@@ -13,43 +13,32 @@ const Login = ({user, setUser}) => {
    
    useEffect(() => {
       navigate(user?.logged && "/dashboard")
-   }, [user])
+   }, [user, navigate])
 
-   const handleSubmit =async (e) => {
+   const handleSubmit = async e => {
       e.preventDefault()
       const user = getStorage("user")
       
       try {
-         console.log(await axios.get("http://localhost:5000/innovent"))
+         const { data } = await axios.get("http://localhost:5000/innovent")
+         console.log(data)
+         const local = data.find(u => u.email === email)
+         if (!local) {
+            setError("Invalid email")
+         } else if (!bcrypt.compareSync(password, local?.password)) {
+            setError("Invalid passowrd")
+         } else {
+            localStorage.setItem("user", JSON.stringify({
+               email: user.email,
+               password: user.password,
+               logged: !user.logged
+            }))
+            setUser(getStorage("user"))
+            console.log('Login success')
+         }
       } catch (err) {
+         setError(err)
          console.log(err)
-      }
-
-      if (!user) {
-         setError("User not found")
-         return
-      }
-      if (email !== user?.email) {
-         setError("Email doesn't match")
-      } else {
-         bcrypt.compare(password, user?.password, (err, result) => {
-            if (err) {
-               console.error('Error comparing passwords:', err);
-               setError(err)
-            } else if (result) {
-               // Password matches
-               localStorage.setItem("user", JSON.stringify({
-                  email: user.email,
-                  password: user.password,
-                  logged: !user.logged
-               }))
-               setUser(getStorage("user"))
-               console.log('Login success');
-            } else {
-               // Password does not match
-               setError('Invalid password');
-            }
-         })
       }
    }
    
