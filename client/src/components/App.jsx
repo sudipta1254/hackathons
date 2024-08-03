@@ -9,7 +9,7 @@ const App = () => {
   const [user, setUser] = useState(getStorage("user"))
 
   return (
-    <Route>
+    <Route basename="/innovent">
       <Header user={user} setUser={setUser} />
       <Main user={user} setUser={setUser} />
       <Footer />

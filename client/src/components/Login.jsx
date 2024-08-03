@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getStorage } from "../utils/getStorage"
 import { Link, useNavigate } from "react-router-dom"
 import bcrypt from "bcryptjs"
+import axios from "axios"
 
 const Login = ({user, setUser}) => {
    document.title = "AutoGenie - Login"
@@ -14,9 +15,15 @@ const Login = ({user, setUser}) => {
       navigate(user?.logged && "/dashboard")
    }, [user])
 
-   const handleSubmit = (e) => {
+   const handleSubmit =async (e) => {
       e.preventDefault()
       const user = getStorage("user")
+      
+      try {
+         console.log(await axios.get("http://localhost:5000/innovent"))
+      } catch (err) {
+         console.log(err)
+      }
 
       if (!user) {
          setError("User not found")
