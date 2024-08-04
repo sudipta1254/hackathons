@@ -10,6 +10,7 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
    const [password, setPassword] = useState("")
    const [confirmPassword, setconfirmPassword] = useState("")
    const [error, setError] = useState("")
+   const [loading, setLoading] = useState(false)
    const navigate = useNavigate()
    
    useEffect(() => {
@@ -18,10 +19,11 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
 
    const handleSubmit = async e => {
       e.preventDefault()
-      setError("")
+      setLoading(true)
 
       if (password !== confirmPassword) {
          setError("Passwords do not match")
+         setLoading(false)
          return
       }
       try {
@@ -29,6 +31,7 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
          data1?.forEach(u => {
             if (u.email === email) {
                setError("Email already exists")
+               setLoading(false)
                return
             }
          })
@@ -40,9 +43,10 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
          setCookie("innovent-user", { _id: data2._id, email, rMe, logged: true })
          setUser(getCookie("innovent-user"))
          alert("Welcome to AutoGenie")
+         setLoading(false)
       } catch (err) {
-         setError(err)
          console.log(err)
+         setLoading(false)
       }
    }
    
@@ -80,7 +84,9 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
                   <label htmlFor="confirmPassword">Confirm password:</label>
                </div>
                <div className="col s12 signup-btn-div form-btn">
-                  <button className="btn login-btn" type="submit">Signup</button>
+                  <button className="btn login-btn" type="submit">
+                     {loading ? <i className="material-icons login-signup-rotate large">refresh</i> : "Signup"}
+                  </button>
                </div>
                <div className="col s12 login-link-div form-link">
                   <span>Already have an account? </span>

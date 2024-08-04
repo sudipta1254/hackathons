@@ -9,6 +9,7 @@ const Login = ({rMe, setrMe, user, setUser}) => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [error, setError] = useState("")
+   const [loading, setLoading] = useState(false)
    const navigate = useNavigate()
    
    useEffect(() => {
@@ -17,7 +18,7 @@ const Login = ({rMe, setrMe, user, setUser}) => {
 
    const handleSubmit = async e => {
       e.preventDefault()
-      setError("")
+      setLoading(true)
       
       try {
          const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL)
@@ -31,9 +32,10 @@ const Login = ({rMe, setrMe, user, setUser}) => {
             setUser(getCookie("innovent-user"))
             console.log('Login success')
          }
+         setLoading(false)
       } catch (err) {
-         setError(err)
          console.log(err)
+         setLoading(false)
       }
    }
 
@@ -62,7 +64,9 @@ const Login = ({rMe, setrMe, user, setUser}) => {
                   <label htmlFor="password">Password:</label>
                </div>
                <div className="col s12 login-btn-div form-btn">
-                  <button className="btn login-btn" type="submit">Login</button>
+                  <button className="btn login-btn" type="submit">
+                     {loading ? <i className="material-icons login-signup-rotate large">refresh</i> : "Login"}
+                  </button>
                </div>
                <div className="rMe-forgot-pass">
                   <label>
