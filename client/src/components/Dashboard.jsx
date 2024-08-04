@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
-import { getCookie } from '../utils/userCookie'
+import deleteAccount from '../utils/deleteAccount'
 
 const Dashboard = ({user, setUser}) => {
    document.title = "AutoGenie - Dashboard"
    const navigate = useNavigate()
    
    useEffect(() => {
-      navigate(!getCookie("innovent-user")?.logged && "/")
+      navigate(!user?.logged && "/")
    }, [user, navigate])
 
    return (
@@ -46,6 +46,18 @@ const Dashboard = ({user, setUser}) => {
                   <h5>Get started</h5>
                </div>
                <Link to="/ai">Personalize with AI</Link>
+            </div>
+            <hr />
+            <div className="danger-zone">
+               <div className="start-danger">
+                  <i className="material-icons">warning</i>
+                  <h5>Danger zone</h5>
+               </div>
+               <div className="danger-delete">
+                  <button className="btn red"
+                     onClick={e => deleteAccount(user._id, setUser)}
+                  >Delete my account</button>
+               </div>
             </div>
          </div>
       </div>

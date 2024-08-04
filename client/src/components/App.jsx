@@ -7,11 +7,12 @@ import { getCookie } from '../utils/userCookie';
 
 const App = () => {
   const [user, setUser] = useState(getCookie("innovent-user"))
+  const [rMe, setrMe] = useState(false)
 
   return (
     <Route>
       <Header user={user} setUser={setUser} />
-      <Main user={user} setUser={setUser} />
+      <Main rMe={rMe} setrMe={setrMe} user={user} setUser={setUser} />
       <Footer />
     </Route>
   );

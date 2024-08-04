@@ -4,7 +4,7 @@ import { getCookie, setCookie } from '../utils/userCookie'
 import bcrypt from "bcryptjs"
 import axios from "axios"
 
-const Login = ({user, setUser}) => {
+const Login = ({rMe, setrMe, user, setUser}) => {
    document.title = "AutoGenie - Login"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
@@ -26,7 +26,7 @@ const Login = ({user, setUser}) => {
          } else if (!bcrypt.compareSync(password, local?.password)) {
             setError("Invalid passowrd")
          } else {
-            setCookie("innovent-user", { email, logged: true })
+            setCookie("innovent-user", { _id: local._id, email, rMe, logged: true })
             setUser(getCookie("innovent-user"))
             console.log('Login success')
          }
@@ -57,7 +57,11 @@ const Login = ({user, setUser}) => {
                <div className="col s12 login-btn-div form-btn">
                   <button className="btn login-btn" type="submit">Login</button>
                </div>
-               <div className="forgot-pass">
+               <div className="rMe-forgot-pass">
+                  <label>
+                     <input type="checkbox" onChange={e => setrMe(e.target.checked)} />
+                     <span>Remember me</span>
+                  </label>
                   <Link to="/login">Forgot password?</Link>
                </div>
                <div className="col s12 signup-link-div form-link">

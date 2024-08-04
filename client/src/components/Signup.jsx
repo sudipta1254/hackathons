@@ -4,11 +4,11 @@ import { getCookie, setCookie } from '../utils/userCookie'
 import bcrypt from "bcryptjs"
 import axios from "axios"
 
-const Signup = ({user, setUser}) => {
+const Signup = ({rMe, setrMe, user, setUser}) => {
    document.title = "AutoGenie - Signup"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
-   const [rePassword, setRePassword] = useState("")
+   const [confirmPassword, setconfirmPassword] = useState("")
    const [error, setError] = useState("")
    const navigate = useNavigate()
    
@@ -19,7 +19,7 @@ const Signup = ({user, setUser}) => {
    const handleSubmit = async e => {
       e.preventDefault()
 
-      if (password !== rePassword) {
+      if (password !== confirmPassword) {
          setError("Passwords do not match")
          return
       }
@@ -33,10 +33,10 @@ const Signup = ({user, setUser}) => {
          })
          const hashedPassword = bcrypt.hashSync(password, 10)
 
-         await axios.post(process.env.REACT_APP_BACKEND_URL, {
+         const { _id } = await axios.post(process.env.REACT_APP_BACKEND_URL, {
             email, password: hashedPassword
          })
-         setCookie("innovent-user", { email, logged: true })
+         setCookie("innovent-user", { _id, email, rMe, logged: true })
          setUser(getCookie("innovent-user"))
       } catch (err) {
          setError(err)
@@ -63,10 +63,10 @@ const Signup = ({user, setUser}) => {
                   <label htmlFor="password">Password:</label>
                </div>
                <div className="input-field col s12">
-                  <input id="rePassword" type="password" value={rePassword} required
-                     onChange={e => setRePassword(e.target.value)}
+                  <input id="confirmPassword" type="password" value={confirmPassword} required
+                     onChange={e => setconfirmPassword(e.target.value)}
                   />
-                  <label htmlFor="rePassword">Reenter password:</label>
+                  <label htmlFor="confirmPassword">Confirm password:</label>
                </div>
                <div className="col s12 signup-btn-div form-btn">
                   <button className="btn login-btn" type="submit">Signup</button>

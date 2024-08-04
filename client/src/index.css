@@ -88,11 +88,11 @@ header span {
   padding: 0 1.5rem;
 }
 
-.Login .forgot-pass {
-  width: 100%;
+.Login .rMe-forgot-pass {
+  width: 95%;
   margin: 1rem auto;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 .form-link,
@@ -245,13 +245,22 @@ header span {
   background: #8a40a7;
 }
 
-.Dashboard .ai-link {
-  width: 95%;
-  margin: auto;
-}
 .Dashboard .get-started {
   display: flex;
   align-items: center;
+}
+.Dashboard .ai-link,
+.Dashboard .danger-zone {
+  width: 95%;
+  margin: auto;
+}
+.Dashboard .start-danger {
+  color: #f00;
+  display: flex;
+  align-items: center;
+}
+.Dashboard .danger-delete {
+  margin: 0 2rem;
 }
 
 .ai-link a {
