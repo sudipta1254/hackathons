@@ -18,6 +18,7 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
 
    const handleSubmit = async e => {
       e.preventDefault()
+      setError("")
 
       if (password !== confirmPassword) {
          setError("Passwords do not match")
@@ -33,11 +34,12 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
          })
          const hashedPassword = bcrypt.hashSync(password, 10)
 
-         const { _id } = await axios.post(process.env.REACT_APP_BACKEND_URL, {
+         const { data: data2 } = await axios.post(process.env.REACT_APP_BACKEND_URL, {
             email, password: hashedPassword
          })
-         setCookie("innovent-user", { _id, email, rMe, logged: true })
+         setCookie("innovent-user", { _id: data2._id, email, rMe, logged: true })
          setUser(getCookie("innovent-user"))
+         alert("Welcome to AutoGenie")
       } catch (err) {
          setError(err)
          console.log(err)
@@ -52,19 +54,28 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
             <div className="row form-inner">
                <div className="input-field col s12">
                   <input id="email" type="email" value={email} required
-                     onChange={e => setEmail(e.target.value)}
+                     onChange={e => {
+                        setEmail(e.target.value);
+                        setError("")
+                     }}
                   />
                   <label htmlFor="email">Email:</label>
                </div>
                <div className="input-field col s12">
                   <input id="password" type="password" value={password} required
-                     onChange={e => setPassword(e.target.value)}
+                     onChange={e => {
+                        setPassword(e.target.value);
+                        setError("")
+                     }}
                   />
                   <label htmlFor="password">Password:</label>
                </div>
                <div className="input-field col s12">
                   <input id="confirmPassword" type="password" value={confirmPassword} required
-                     onChange={e => setconfirmPassword(e.target.value)}
+                     onChange={e => {
+                        setconfirmPassword(e.target.value)
+                        setError("")
+                     }}
                   />
                   <label htmlFor="confirmPassword">Confirm password:</label>
                </div>

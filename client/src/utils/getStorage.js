@@ -1,4 +1,5 @@
-export const getStorage = (id) => {
-   const lc = JSON.parse(localStorage.getItem(id))
-   return lc
+const getFromServer = async (_id) => {
+   
 }
+
+export default getFromServer

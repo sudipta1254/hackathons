@@ -17,16 +17,17 @@ const Login = ({rMe, setrMe, user, setUser}) => {
 
    const handleSubmit = async e => {
       e.preventDefault()
+      setError("")
       
       try {
          const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL)
-         const local = data.find(u => u.email === email)
-         if (!local) {
+         const fromDB = data.find(u => u.email === email)
+         if (!fromDB) {
             setError("Invalid email")
-         } else if (!bcrypt.compareSync(password, local?.password)) {
+         } else if (!bcrypt.compareSync(password, fromDB?.password)) {
             setError("Invalid passowrd")
          } else {
-            setCookie("innovent-user", { _id: local._id, email, rMe, logged: true })
+            setCookie("innovent-user", { _id: fromDB._id, email, rMe, logged: true })
             setUser(getCookie("innovent-user"))
             console.log('Login success')
          }
@@ -35,7 +36,7 @@ const Login = ({rMe, setrMe, user, setUser}) => {
          console.log(err)
       }
    }
-   
+
    return (
       <div className="Login">
          <h3 className="top-text center">Login</h3>
@@ -44,13 +45,19 @@ const Login = ({rMe, setrMe, user, setUser}) => {
             <div className="row form-inner">
                <div className="input-field col s12">
                   <input id="email" type="email" value={email} required
-                     onChange={e => setEmail(e.target.value)}
+                     onChange={e => {
+                        setEmail(e.target.value)
+                        setError("")
+                     }}
                   />
                   <label htmlFor="email">Email:</label>
                </div>
                <div className="input-field col s12">
                   <input id="password" type="password" value={password} required
-                     onChange={e => setPassword(e.target.value)}
+                     onChange={e => {
+                        setPassword(e.target.value)
+                        setError("")
+                     }}
                   />
                   <label htmlFor="password">Password:</label>
                </div>
