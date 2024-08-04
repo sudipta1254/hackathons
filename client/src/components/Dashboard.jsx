@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
-import M from "materialize-css"
+import { getCookie } from '../utils/userCookie'
 
 const Dashboard = ({user, setUser}) => {
    document.title = "AutoGenie - Dashboard"
    const navigate = useNavigate()
    
    useEffect(() => {
-      navigate(!user?.logged && "/")
-   }, [user])
-   useEffect(() => {
-      M.AutoInit();
-   }, [])
+      navigate(!getCookie("innovent-user")?.logged && "/")
+   }, [user, navigate])
 
    return (
       <div className="Dashboard">

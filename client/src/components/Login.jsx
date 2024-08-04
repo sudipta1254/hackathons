@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { getStorage } from "../utils/getStorage"
 import { Link, useNavigate } from "react-router-dom"
+import { getCookie, setCookie } from '../utils/userCookie'
 import bcrypt from "bcryptjs"
 import axios from "axios"
 
-const Login = ({dt1, user, setUser}) => {
+const Login = ({user, setUser}) => {
    document.title = "AutoGenie - Login"
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
@@ -26,8 +26,8 @@ const Login = ({dt1, user, setUser}) => {
          } else if (!bcrypt.compareSync(password, local?.password)) {
             setError("Invalid passowrd")
          } else {
-            localStorage.setItem("innovent-user", JSON.stringify({ logged: true }))
-            setUser(getStorage("innovent-user"))
+            setCookie("innovent-user", { email, logged: true })
+            setUser(getCookie("innovent-user"))
             console.log('Login success')
          }
       } catch (err) {

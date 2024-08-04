@@ -26,7 +26,7 @@ const Chatbot = ({user, setUser}) => {
 
    useEffect(() => {
       navigate(!user?.logged && "/")
-   }, [user])
+   }, [user, navigate])
    useEffect(() => {
       M.AutoInit();
    }, [])
@@ -85,7 +85,7 @@ const Chatbot = ({user, setUser}) => {
          <div className="data-container card-panel">
             { !input2 && <div className="dummyText">
                <div className="dummy-intro">
-                  <h3>Hello, {user.email}</h3>
+                  <h3>Hello, {user?.email}</h3>
                </div>
                <h4>How can I help you?</h4>
             </div> }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getStorage } from "../utils/getStorage"
 import { Link, useNavigate } from "react-router-dom"
+import { getCookie, setCookie } from '../utils/userCookie'
 import bcrypt from "bcryptjs"
 import axios from "axios"
 
@@ -36,8 +36,8 @@ const Signup = ({user, setUser}) => {
          await axios.post(process.env.REACT_APP_BACKEND_URL, {
             email, password: hashedPassword
          })
-         localStorage.setItem("innovent-user", JSON.stringify({ logged: true }))
-         setUser(getStorage("innovent-user"))
+         setCookie("innovent-user", { email, logged: true })
+         setUser(getCookie("innovent-user"))
       } catch (err) {
          setError(err)
          console.log(err)

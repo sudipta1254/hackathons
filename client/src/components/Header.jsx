@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import spark from "../assets/autogenie-512.png"
 import { Link } from "react-router-dom"
+import spark from "../assets/autogenie-512.png"
 import { logout } from '../utils/logout'
 import $ from "jquery"
 import M from "materialize-css"
@@ -8,7 +8,7 @@ import M from "materialize-css"
 const flex = {display:"flex",alignItems:"center",justifyContent:"space-between"};
 
 const Header = ({user, setUser}) => {
-   const logged = user?.logged ?? null
+   const logged = user?.logged ?? false
    $(function() {
       $('.header-navlink').on('click', e => {
          M.Sidenav.getInstance($('.sidenav')).close()

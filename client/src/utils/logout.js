@@ -1,11 +1,8 @@
-import { getStorage } from "./getStorage"
+import { removeCookie } from "./userCookie"
 
 export const logout = (user, setUser) => {
    if (user?.logged) {
-      const { email, password, logged } = user
-      localStorage.setItem("innovent-user", JSON.stringify({
-         email, password, logged: !logged
-      }))
-      setUser(getStorage("user"))
+      removeCookie("innovent-user")
+      setUser(null)
    }
 }
