@@ -7,6 +7,7 @@ import Login from "./Login"
 import Signup from "./Signup"
 import Home from './Home';
 import "../index.css"
+import Profile from './Profile';
 
 const Main = ({rMe, setrMe, user, setUser}) => {
    return (
@@ -17,6 +18,7 @@ const Main = ({rMe, setrMe, user, setUser}) => {
                <Route path="/login" element={ <Login rMe={rMe} setrMe={setrMe} user={user} setUser={setUser} /> } />
                <Route path="/signup" element={ <Signup rMe={rMe} setrMe={setrMe} user={user} setUser={setUser} /> } />
                <Route path="/ai" element={ <Chatbot user={user} setUser={setUser} /> } />
+               <Route path="/profile" element={ <Profile user={user} setUser={setUser} /> } />
                <Route path="/dashboard" element={ <Dashboard user={user} setUser={setUser} /> } />
                <Route path="*" element={ <NotFound /> } />
             </Routes>

@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
-import { getCookie } from '../utils/userCookie'
 
 const Home = ({user, setUser}) => {
    document.title = "AutoGenie - Tata Innovent"
    const navigate = useNavigate()
    
    useEffect(() => {
-      navigate(getCookie("innovent-user")?.logged && "dashboard")
-   }, [navigate])
+      navigate(user?.logged && "dashboard")
+   }, [user, navigate])
 
    return (
       <div className="Home center">

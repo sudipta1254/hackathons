@@ -69,7 +69,7 @@ header span {
 .Login, .Signup {
   width: 32rem;
   max-width: 90%;
-  height: 27rem;
+  /* height: 27rem; */
   margin: 7rem auto;
   border-radius: 2rem;
   box-shadow: 0 0 2rem #cacaca;
@@ -113,7 +113,7 @@ header span {
 /* Signup */
 
 .Signup {
-  height: 30rem;
+  /* height: 30rem; */
 }
 
 .Signup .form-inner {
@@ -185,6 +185,21 @@ header span {
   33%, 58% { transform: translateY(-3.4rem); }
   66%, 91% { transform: translateY(-7rem); }
   100% { transform: translateY(0); }
+}
+
+
+/* Profile */
+
+.profile-pic {
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid; */
+}
+.profile-pic img {
+  width: 9rem;
+  text-align: center;
+  background: #ccc;
+  border-radius: 50%;
 }
 
 
