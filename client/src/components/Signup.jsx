@@ -40,7 +40,7 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
          const { data: data2 } = await axios.post(process.env.REACT_APP_BACKEND_URL, {
             email, password: hashedPassword
          })
-         setCookie("innovent-user", { _id: data2._id, email, rMe, logged: true })
+         setCookie("innovent-user", { _id: data2._id, email, rMe: true, logged: true })
          setUser(getCookie("innovent-user"))
          alert("Welcome to AutoGenie")
          setLoading(false)

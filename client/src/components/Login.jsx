@@ -70,7 +70,9 @@ const Login = ({rMe, setrMe, user, setUser}) => {
                </div>
                <div className="rMe-forgot-pass">
                   <label>
-                     <input type="checkbox" onChange={e => setrMe(e.target.checked)} />
+                     <input type="checkbox" checked={rMe}
+                        onChange={e => setrMe(e.target.checked)}
+                     />
                      <span>Remember me</span>
                   </label>
                   <Link to="/login">Forgot password?</Link>

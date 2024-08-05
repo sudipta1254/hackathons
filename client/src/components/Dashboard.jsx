@@ -54,7 +54,7 @@ const Dashboard = ({user, setUser}) => {
                   <h5>Danger zone</h5>
                </div>
                <div className="danger-delete">
-                  <button className="btn red"
+                  <button className="btn red account-delete-btn"
                      onClick={e => deleteAccount(user._id, setUser)}
                   >Delete my account</button>
                </div>
