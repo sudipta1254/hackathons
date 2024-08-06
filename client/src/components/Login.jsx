@@ -32,9 +32,9 @@ const Login = ({rMe, setrMe, user, setUser}) => {
             setUser(getCookie("innovent-user"))
             console.log('Login success')
          }
-         setLoading(false)
       } catch (err) {
          console.log(err)
+      } finally {
          setLoading(false)
       }
    }
@@ -78,10 +78,8 @@ const Login = ({rMe, setrMe, user, setUser}) => {
                   <Link to="/login">Forgot password?</Link>
                </div>
                <div className="col s12 signup-link-div form-link">
-                  <div>
-                     <span>Don't have an account? </span>
-                     <Link className="signup-link" to="/signup">Signup</Link>
-                  </div>
+                  <span>Don't have an account? </span>
+                  <Link className="signup-link" to="/signup">Signup</Link>
                </div>
             </div>
          </form>

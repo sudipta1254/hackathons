@@ -43,9 +43,9 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
          setCookie("innovent-user", { _id: data2._id, email, rMe: true, logged: true })
          setUser(getCookie("innovent-user"))
          alert("Welcome to AutoGenie")
-         setLoading(false)
       } catch (err) {
          console.log(err)
+      } finally {
          setLoading(false)
       }
    }
