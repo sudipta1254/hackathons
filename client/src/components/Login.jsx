@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
-import { getCookie, setCookie } from '../utils/userCookie'
+import { setCookie } from '../utils/userCookie'
+import { setSessionStrg } from "../utils/sessionStrg"
 import bcrypt from "bcryptjs"
 import axios from "axios"
 
@@ -28,8 +29,12 @@ const Login = ({rMe, setrMe, user, setUser}) => {
          } else if (!bcrypt.compareSync(password, fromDB?.password)) {
             setError("Invalid passowrd")
          } else {
-            setCookie("innovent-user", { _id: fromDB._id, email, rMe, logged: true })
-            setUser(getCookie("innovent-user"))
+            const userData = { _id: fromDB._id, email, rMe, logged: true }
+            if (rMe)
+               setCookie("innovent-user", userData)
+            else
+               setSessionStrg(userData)
+            setUser(userData)
             console.log('Login success')
          }
       } catch (err) {

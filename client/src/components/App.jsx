@@ -1,17 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from "./Header"
 import Footer from "./Footer"
 import Main from './Main';
 import { BrowserRouter as Route } from 'react-router-dom';
-import { getCookie } from '../utils/userCookie';
+import { getCookie, removeCookie } from '../utils/userCookie';
+import { getSessionStrg } from '../utils/sessionStrg';
 
 const App = () => {
-  const [user, setUser] = useState(getCookie("innovent-user"))
+  const [user, setUser] = useState(getSessionStrg() || getCookie("innovent-user"))
   const [rMe, setrMe] = useState(true)
+
+  useEffect(() => {
+    if (!rMe) {
+      window.addEventListener("beforeunload", handleTabClose)
+    }
+    return () => window.removeEventListener("beforeunload", handleTabClose)
+  })
+
+  const handleTabClose = () => {
+    if (!rMe) {
+      removeCookie("innovent-user")
+      setUser(null)
+    }
+  }
 
   return (
     <Route>
-      <Header user={user} setUser={setUser} />
+      <Header rMe={rMe} user={user} setUser={setUser} />
       <Main rMe={rMe} setrMe={setrMe} user={user} setUser={setUser} />
       <Footer />
     </Route>

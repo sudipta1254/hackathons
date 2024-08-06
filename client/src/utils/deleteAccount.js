@@ -15,10 +15,11 @@ const deleteAccount = (_id, setUser) => {
          })
          .catch(error => {
             console.error(error)
+            $(".account-delete-btn").text("DELETE MY ACCOUNT")
             alert("Account deletion unsuccess!")
          })
    } else
-      alert(0)
+      alert("Account deletion unsuccess!")
 }
 
 export default deleteAccount
