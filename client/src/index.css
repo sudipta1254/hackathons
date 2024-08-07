@@ -233,22 +233,28 @@ header span {
   align-items: center;
 }
 
-.account-live {
+.account-status {
   color: #fff;
-  width: 2.2rem;
-  height: 1.2rem;
-  margin: 0 10px;
+  margin: 0 .6rem;
+  padding: .2rem .3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: .8rem;
   border-radius: 5px;
-  background: #75c181;
+}
+
+.Dashboard .status-live {
+  background: #75c181 !important;
+}
+.Dashboard .status-drop {
+  background: #f44336 !important;
 }
 
 .Dashboard .plans {
   color: #fff;
   width: 100%;
+  margin: 1rem auto;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

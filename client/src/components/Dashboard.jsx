@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import deleteAccount from '../utils/deleteAccount'
+import axios from 'axios'
 
 const Dashboard = ({user, setUser}) => {
    document.title = "AutoGenie - Dashboard"
+   const [proposal, setProposal] = useState({})
    const navigate = useNavigate()
    
    useEffect(() => {
       navigate(!user?.logged && "/")
    }, [user, navigate])
+   useEffect(() => {
+      user && axios.get(`${process.env.REACT_APP_BACKEND_PROPOSAL}/${user?._id}`)
+         .then(res => {
+            setProposal(res.data)
+         })
+         .catch(console.log)
+   }, [user])
 
    return (
       <div className="Dashboard">
@@ -20,22 +29,24 @@ const Dashboard = ({user, setUser}) => {
          <div className="dashboard-body">
             <div className="dashboard-account">
                <h6>Account: </h6><span>{ user && user.email }</span>
-               <div className="account-live"><b>LIVE</b></div>
+               <div className={`account-status status-${user?.acStatus === "Active" ? "live" : "drop"}`}>
+                  <b>{user?.acStatus === "Active" ? "LIVE" : "DROP"}</b>
+               </div>
             </div>
             <div className="plans">
-               <div className="plan-1 plan-each">
+               <div className={`plan-1 plan-each status-${user?.acStatus === "Active" ? "live" : "drop"}`}>
                   <i className="material-icons">account_circle</i>
-                  <h5>Active</h5>
+                  <h5>{user?.acStatus}</h5>
                   <p>Account</p>
                </div>
                <div className="plan-3 plan-each">
                   <i className="material-icons">checklist_rtl</i>
-                  <h5>0</h5>
+                  <h5>{proposal?.proposed ?? 0}</h5>
                   <p>Proposals proposed</p>
                </div>
                <div className="plan-4 plan-each">
                   <i className="material-icons">done_all</i>
-                  <h5>0</h5>
+                  <h5>{proposal?.approved ?? 0}</h5>
                   <p>Proposals approved</p>
                </div>
             </div>

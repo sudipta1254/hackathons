@@ -22,14 +22,14 @@ const Login = ({rMe, setrMe, user, setUser}) => {
       setLoading(true)
       
       try {
-         const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL)
+         const { data } = await axios.get(process.env.REACT_APP_BACKEND_USER)
          const fromDB = data.find(u => u.email === email)
          if (!fromDB) {
             setError("Invalid email")
          } else if (!bcrypt.compareSync(password, fromDB?.password)) {
             setError("Invalid passowrd")
          } else {
-            const userData = { _id: fromDB._id, email, rMe, logged: true }
+            const userData = { _id: fromDB._id, email, rMe, logged: true, acStatus: fromDB.acStatus }
             if (rMe)
                setCookie("innovent-user", userData)
             else

@@ -83,12 +83,15 @@ const Chatbot = ({user, setUser}) => {
             { error }
          </div>
          <div className="data-container card-panel">
-            { !input2 && <div className="dummyText">
-               <div className="dummy-intro">
-                  <h3>Hello, {user?.email}</h3>
-               </div>
-               <h4>How can I help you?</h4>
-            </div> }
+            { user?.acStatus === "Active" ?
+               !input2 && <div className="dummyText">
+                  <div className="dummy-intro">
+                     <h3>Hello, {user?.email}</h3>
+                  </div>
+                  <h4>How can I help you?</h4>
+               </div> :
+               <h5 className="dummyText">Please activate the account to continue.</h5>
+            }
             <div className="conversation">
                {history.map(({role, parts}, index) => (
                   index ? <div
@@ -100,7 +103,7 @@ const Chatbot = ({user, setUser}) => {
                ))}
             </div>
          </div>
-         <div className="input-container">
+         <div className="input-container" style={{pointerEvents:user?.acStatus === "Inactive"&&"none"}}>
             <i className="material-icons">attach_file</i>
             <input id="Chatbot-input" type="text" placeholder="Enter prompt.."
                value={input}

@@ -27,7 +27,7 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
          return
       }
       try {
-         const { data: data1 } = await axios.get(process.env.REACT_APP_BACKEND_URL)
+         const { data: data1 } = await axios.get(process.env.REACT_APP_BACKEND_USER)
          data1?.forEach(u => {
             if (u.email === email) {
                setError("Email already exists")
@@ -37,10 +37,15 @@ const Signup = ({rMe, setrMe, user, setUser}) => {
          })
          const hashedPassword = bcrypt.hashSync(password, 10)
 
-         const { data: data2 } = await axios.post(process.env.REACT_APP_BACKEND_URL, {
+         const { data: data2 } = await axios.post(process.env.REACT_APP_BACKEND_USER, {
             email, password: hashedPassword
          })
-         setCookie("innovent-user", { _id: data2._id, email, rMe: true, logged: true })
+
+         await axios.post(process.env.REACT_APP_BACKEND_PROPOSAL, {
+            email, associated: data2._id
+         })
+         
+         setCookie("innovent-user", { _id: data2._id, email, rMe: true, logged: true, acStatus: "Active" })
          setUser(getCookie("innovent-user"))
          alert("Welcome to AutoGenie")
       } catch (err) {

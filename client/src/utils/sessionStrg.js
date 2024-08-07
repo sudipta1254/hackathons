@@ -1,6 +1,5 @@
 export const getSessionStrg = () => {
    const lt = sessionStorage.getItem("innovent-user")
-   console.log(lt)
    return lt
 }
 
