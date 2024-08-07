@@ -21,8 +21,7 @@ router.get("/:id", getUser, async (req, res) => {
 router.post('/', async (req, res) => {
    const user = new User({
      email: req.body.email,
-     password: req.body.password,
-     logged: true
+     password: req.body.password
    })
    try {
      const newUser = await user.save()

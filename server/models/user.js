@@ -14,6 +14,11 @@ const userSchema = new mongoose.Schema({
       type: Date,
       required: true,
       default: Date.now,
+   },
+   acStatus: {
+      type: String,
+      required: true,
+      default: "Active"
    }
 })
 
