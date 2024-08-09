@@ -20,7 +20,7 @@ const Chatbot = ({user, setUser}) => {
    const [loading, setLoading] = useState(false)
    const [history, setHistory] = useState([
       { role: "user", parts:
-         [{text: "From now your name is 'AutoGenie'. Whenever user calls you for first time response with your name."}]
+         [{text: "From now your name is 'AutoGenie'. Whenever user calls you for first time only, respond with your name."}]
       }
    ])
 
@@ -72,7 +72,6 @@ const Chatbot = ({user, setUser}) => {
          setLoading(false)
       } catch (err) {
          console.log(err)
-         setError(err)
          setLoading(false)
       }
    }

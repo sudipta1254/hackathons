@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Header from "./Header"
-import Footer from "./Footer"
-import Main from './Main';
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import Main from './components/Main';
 import { BrowserRouter as Route } from 'react-router-dom';
-import { getCookie, removeCookie } from '../utils/userCookie';
-import { getSessionStrg } from '../utils/sessionStrg';
+import { getCookie, removeCookie } from './utils/userCookie';
+import { getSessionStrg } from './utils/sessionStrg';
 
    const App = () => {
    const [user, setUser] = useState(getSessionStrg() || getCookie("innovent-user"))

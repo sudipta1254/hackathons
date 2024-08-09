@@ -36,17 +36,17 @@ const Dashboard = ({user, setUser}) => {
             <div className="plans">
                <div className={`plan-1 plan-each status-${user?.acStatus === "Active" ? "live" : "drop"}`}>
                   <i className="material-icons">account_circle</i>
-                  <h5>{user?.acStatus}</h5>
+                  <h5>{user?.acStatus ?? "-"}</h5>
                   <p>Account</p>
                </div>
                <div className="plan-3 plan-each">
                   <i className="material-icons">checklist_rtl</i>
-                  <h5>{proposal?.proposed ?? 0}</h5>
+                  <h5>{proposal?.proposed ?? "-"}</h5>
                   <p>Proposals proposed</p>
                </div>
                <div className="plan-4 plan-each">
                   <i className="material-icons">done_all</i>
-                  <h5>{proposal?.approved ?? 0}</h5>
+                  <h5>{proposal?.approved ?? "-"}</h5>
                   <p>Proposals approved</p>
                </div>
             </div>

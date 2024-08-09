@@ -7,6 +7,7 @@ import Login from "./Login"
 import Signup from "./Signup"
 import Home from './Home';
 import "../index.css"
+import BarcodeScanner from './Scanner';
 
 const Main = ({rMe, setrMe, user, setUser}) => {
    return (
@@ -18,6 +19,7 @@ const Main = ({rMe, setrMe, user, setUser}) => {
                <Route path="/signup" element={ <Signup rMe={rMe} setrMe={setrMe} user={user} setUser={setUser} /> } />
                <Route path="/ai" element={ <Chatbot user={user} setUser={setUser} /> } />
                <Route path="/dashboard" element={ <Dashboard user={user} setUser={setUser} /> } />
+               <Route path="/barcode" element={ <BarcodeScanner /> } />
                <Route path="*" element={ <NotFound /> } />
             </Routes>
          </div>
